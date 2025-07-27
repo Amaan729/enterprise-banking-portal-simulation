@@ -1,8 +1,4 @@
---- a/frontend/src/App.js
-+++ b/frontend/src/App.js
-@@ -1,7 +1,6 @@
--import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
  import React from 'react';
  import Login        from './components/Login';
  // …
