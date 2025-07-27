@@ -1,38 +1,32 @@
-// frontend/src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login       from './components/Login';
-import Register    from './components/Register';
-import Accounts    from './components/Accounts';
-import Transactions from './components/Transactions';
-import Transfer    from './components/Transfer';
-import Navbar      from './components/Navbar';
-import { AuthProvider, useAuth } from './context/AuthContext';
+--- a/frontend/src/App.js
++++ b/frontend/src/App.js
+@@ -1,7 +1,6 @@
+-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
++import { Routes, Route, Navigate } from 'react-router-dom';
+ import React from 'react';
+ import Login        from './components/Login';
+ // …
 
-function RequireAuth({ children }) {
-  const { token } = useAuth();
-  return token ? children : <Navigate to="/login" />;
-}
+ function App() {
+   return (
+-    <AuthProvider>
+-      <Router>
+-        <Navbar />
+-        <Routes>
++    <AuthProvider>
++      <>
++        <Navbar />
++        <Routes>
+           <Route path="/" element={<Navigate to="/accounts" />} />
+           <Route path="/login" element={<Login />} />
+           <Route path="/register" element={<Register />} />
+@@ -22,7 +21,6 @@ function App() {
+           <Route path="/transactions/:accountId" element={
+             <RequireAuth><Transactions /></RequireAuth>} />
+         </Routes>
+-      </Router>
+     </AuthProvider>
+   );
+ }
 
-function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/accounts" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/accounts" element={
-            <RequireAuth><Accounts /></RequireAuth>} />
-          <Route path="/transfer" element={
-            <RequireAuth><Transfer /></RequireAuth>} />
-          <Route path="/transactions/:accountId" element={
-            <RequireAuth><Transactions /></RequireAuth>} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  );
-}
-
-export default App;
+ export default App;
