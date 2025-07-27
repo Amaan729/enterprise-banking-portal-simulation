@@ -1,0 +1,10 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/api/*",         // your Azure Functions or API routes
+      "/favicon.ico",   // static assets
+      "/static/*"       // React’s JS/CSS folders
+    ]
+  }
+}
