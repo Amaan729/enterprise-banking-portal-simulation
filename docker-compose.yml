@@ -1,0 +1,24 @@
+# docker-compose.yml
+services:
+  backend:
+    build:
+      context: .                    # repo root
+      dockerfile: backend/Dockerfile  # path to Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: bankuser
+      POSTGRES_PASSWORD: bankpass
+      POSTGRES_DB: bankdb
+    ports: ["5432:5432"]
+
+  frontend:
+    build: ./frontend
+    ports: ["3000:80"]
